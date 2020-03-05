@@ -1,24 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Weather Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="BYZ-38-t0r" userLabel="Weather Controller" customClass="ViewController" customModule="Clime" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Main View">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="1wF-AW-G1e">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3WO-N6-JqY" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="394.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwR-S5-BM9" userLabel="changeCityButton">
+                                        <rect key="frame" x="356" y="50" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="3QF-w4-ZS6"/>
+                                            <constraint firstAttribute="height" constant="50" id="KQx-tD-wde"/>
+                                        </constraints>
+                                        <state key="normal" image="switch"/>
+                                        <connections>
+                                            <segue destination="x65-fy-KNQ" kind="presentation" identifier="changeCitySegue" id="VLB-cx-LDz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ZwR-S5-BM9" secondAttribute="trailing" constant="8" id="GfZ-ld-TqN"/>
+                                    <constraint firstItem="ZwR-S5-BM9" firstAttribute="top" secondItem="3WO-N6-JqY" secondAttribute="top" constant="50" id="gbD-ol-ZId"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkW-ts-B20" userLabel="Bottom View">
+                                <rect key="frame" x="0.0" y="402.5" width="414" height="493.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-3°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dij-pj-iDi">
+                                        <rect key="frame" x="8" y="8" width="398" height="72"/>
+                                        <color key="backgroundColor" red="0.0020820114213198071" green="0.0020820114213198071" blue="0.0020820114213198071" alpha="0.34463291952054792" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="52"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nairobi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S73-tr-1P9">
+                                        <rect key="frame" x="8" y="422.5" width="398" height="63"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shower3" translatesAutoresizingMaskIntoConstraints="NO" id="9yz-Hm-y4w">
+                                        <rect key="frame" x="143" y="183" width="128" height="128"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="S73-tr-1P9" secondAttribute="trailing" constant="8" id="003-Hf-Zem"/>
+                                    <constraint firstItem="Dij-pj-iDi" firstAttribute="top" secondItem="JkW-ts-B20" secondAttribute="top" constant="8" id="EOQ-tE-zek"/>
+                                    <constraint firstItem="9yz-Hm-y4w" firstAttribute="centerX" secondItem="JkW-ts-B20" secondAttribute="centerX" id="XIt-Zh-vI8"/>
+                                    <constraint firstItem="Dij-pj-iDi" firstAttribute="leading" secondItem="JkW-ts-B20" secondAttribute="leading" constant="8" id="t4o-JC-yrU"/>
+                                    <constraint firstAttribute="bottom" secondItem="S73-tr-1P9" secondAttribute="bottom" constant="8" id="uIa-in-Nua"/>
+                                    <constraint firstItem="S73-tr-1P9" firstAttribute="leading" secondItem="JkW-ts-B20" secondAttribute="leading" constant="8" id="xVC-Ik-5dj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dij-pj-iDi" secondAttribute="trailing" constant="8" id="yk6-j2-v8u"/>
+                                    <constraint firstItem="9yz-Hm-y4w" firstAttribute="centerY" secondItem="JkW-ts-B20" secondAttribute="centerY" id="zeN-Cd-i5q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="JkW-ts-B20" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0tj-Oi-jsL"/>
+                            <constraint firstItem="1wF-AW-G1e" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1rs-c9-6dn"/>
+                            <constraint firstItem="1wF-AW-G1e" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Avc-PT-sSc"/>
+                            <constraint firstItem="JkW-ts-B20" firstAttribute="top" secondItem="3WO-N6-JqY" secondAttribute="bottom" constant="8" id="B1x-Zc-TxT"/>
+                            <constraint firstItem="3WO-N6-JqY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BhZ-wa-yLh"/>
+                            <constraint firstItem="3WO-N6-JqY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Fhs-B8-kFN"/>
+                            <constraint firstItem="JkW-ts-B20" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Goo-Tl-fr0"/>
+                            <constraint firstAttribute="bottom" secondItem="1wF-AW-G1e" secondAttribute="bottom" id="azw-gp-SdA"/>
+                            <constraint firstItem="3WO-N6-JqY" firstAttribute="height" secondItem="JkW-ts-B20" secondAttribute="height" multiplier="0.8" id="buG-I0-r39"/>
+                            <constraint firstItem="3WO-N6-JqY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="htT-N5-kTu"/>
+                            <constraint firstItem="JkW-ts-B20" firstAttribute="top" secondItem="3WO-N6-JqY" secondAttribute="bottom" constant="8" id="jYt-UR-VCc"/>
+                            <constraint firstAttribute="bottom" secondItem="JkW-ts-B20" secondAttribute="bottom" id="k4T-y4-g2h"/>
+                            <constraint firstItem="1wF-AW-G1e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t0b-30-mZC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+        </scene>
+        <!--City Controller-->
+        <scene sceneID="Tqj-Sc-bWG">
+            <objects>
+                <viewController id="x65-fy-KNQ" userLabel="City Controller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YI2-TX-irj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="A0L-Pa-Eax">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmo-gL-mss" userLabel="backButton">
+                                <rect key="frame" x="20" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="LLd-My-SLc"/>
+                                    <constraint firstAttribute="height" constant="50" id="aRO-Mv-Dlu"/>
+                                </constraints>
+                                <state key="normal" image="left"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKI-cu-5N0">
+                                <rect key="frame" x="20" y="100" width="374" height="134"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AfU-eD-Wnt">
+                                        <rect key="frame" x="8" y="10" width="358" height="36"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsh-5V-Wvb">
+                                        <rect key="frame" x="8" y="66" width="358" height="56"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="32"/>
+                                        <state key="normal" title=" Get Weather">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Tsh-5V-Wvb" firstAttribute="leading" secondItem="xKI-cu-5N0" secondAttribute="leading" constant="8" id="4gK-y9-ir8"/>
+                                    <constraint firstItem="AfU-eD-Wnt" firstAttribute="leading" secondItem="xKI-cu-5N0" secondAttribute="leading" constant="8" id="Uda-k3-HyK"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tsh-5V-Wvb" secondAttribute="bottom" constant="12" id="W00-zc-WYf"/>
+                                    <constraint firstAttribute="trailing" secondItem="AfU-eD-Wnt" secondAttribute="trailing" constant="8" id="ajz-fN-ucC"/>
+                                    <constraint firstItem="AfU-eD-Wnt" firstAttribute="top" secondItem="xKI-cu-5N0" secondAttribute="top" constant="10" id="iLS-2p-IDH"/>
+                                    <constraint firstItem="Tsh-5V-Wvb" firstAttribute="top" secondItem="AfU-eD-Wnt" secondAttribute="bottom" constant="20" id="kyL-6Q-aTg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tsh-5V-Wvb" secondAttribute="trailing" constant="8" id="vfZ-mx-e9s"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xKI-cu-5N0" firstAttribute="top" secondItem="Vmo-gL-mss" secondAttribute="bottom" constant="50" id="AFa-Dg-Grg"/>
+                            <constraint firstItem="A0L-Pa-Eax" firstAttribute="leading" secondItem="LFa-7Z-awh" secondAttribute="leading" id="CcX-Aj-9Ke"/>
+                            <constraint firstAttribute="bottom" secondItem="A0L-Pa-Eax" secondAttribute="bottom" id="Kap-Wq-6se"/>
+                            <constraint firstItem="Vmo-gL-mss" firstAttribute="leading" secondItem="LFa-7Z-awh" secondAttribute="leading" constant="20" id="NGC-8g-4sZ"/>
+                            <constraint firstItem="A0L-Pa-Eax" firstAttribute="trailing" secondItem="LFa-7Z-awh" secondAttribute="trailing" id="UXv-IY-9pD"/>
+                            <constraint firstItem="A0L-Pa-Eax" firstAttribute="top" secondItem="YI2-TX-irj" secondAttribute="top" id="X5h-Pa-QBL"/>
+                            <constraint firstItem="LFa-7Z-awh" firstAttribute="trailing" secondItem="xKI-cu-5N0" secondAttribute="trailing" constant="20" id="euY-QT-ptd"/>
+                            <constraint firstItem="xKI-cu-5N0" firstAttribute="leading" secondItem="LFa-7Z-awh" secondAttribute="leading" constant="20" id="fFx-Ol-8ak"/>
+                            <constraint firstItem="Vmo-gL-mss" firstAttribute="top" secondItem="LFa-7Z-awh" secondAttribute="top" id="prf-pl-vJ4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LFa-7Z-awh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sun-2A-NUw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uva-j0-DxW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995.65217391304361" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="500" height="755"/>
+        <image name="cityBackground" width="600" height="399.5"/>
+        <image name="left" width="32" height="32"/>
+        <image name="shower3" width="128" height="128"/>
+        <image name="switch" width="64" height="64"/>
+    </resources>
 </document>
