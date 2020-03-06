@@ -10,6 +10,8 @@ import UIKit
 
 class CityViewController: UIViewController {
 
+    @IBOutlet weak var enterCityField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +19,8 @@ class CityViewController: UIViewController {
     }
 
 
+    @IBAction func getWeatherBtn(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
@@ -26,5 +30,9 @@ class CityViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func backButton(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
