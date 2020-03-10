@@ -1,4 +1,4 @@
-framework module Pods_Clime {
+module Pods_Clime {
   umbrella header "Pods-Clime-umbrella.h"
 
   export *

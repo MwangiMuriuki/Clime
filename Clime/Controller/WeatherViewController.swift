@@ -8,7 +8,9 @@
 
 import UIKit
 
-import CoreLocation 
+import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -16,6 +18,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     let APP_ID = "2964dd9736735dcd4fe5082df910b5a1"
     
     let locationManager = CLLocationManager ()
+    let weatherDataModel = WeatherDataModel()
     
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var imageIcon: UIImageView!
@@ -37,15 +40,68 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     /***************************************************************************/
     //Write the getWeatherData Method here
     
+    func getWeatherData(url: String, parameters: [String: String]){
+        
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{
+            response in
+            if response.result.isSuccess{
+                 print("Success!!!")
+                self.cityLabel.text = "Success"
+                
+                let weatherJSON : JSON = JSON(response.result.value!)
+                
+//                print(weatherJSON)
+                
+                self.updateWeatherData(json: weatherJSON)
+                
+                
+            }else{
+                
+                print("Error \(String(describing: response.result.error))")
+                self.cityLabel.text = "Connection Issues"
+            }
+        }
+        
+        
+    }
+    
     
     //MARK: - JSON Parsing
        /***************************************************************************/
        //Write the updateWeatherData Method here
     
+    func updateWeatherData(json : JSON){
+        
+        if let tempResults = json["main"]["temp"].double{
+            let cityName = json["name"].stringValue
+            weatherDataModel.temperature = Int(tempResults - 273.15)
+            weatherDataModel.city = cityName
+            weatherDataModel.condition = json["weather"][0]["id"].intValue
+            weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+            
+            updateUIWithWeatherData()
+            
+        }else{
+            
+            cityLabel.text = "Unavailable"
+            
+        }
+        
+        
+    }
+    
     
     //MARK: - UI Updates
        /***************************************************************************/
        //Write the updateUIWithWeatherData Method here
+    
+    func updateUIWithWeatherData(){
+        
+        cityLabel.text = weatherDataModel.city
+        tempLabel.text = String(weatherDataModel.temperature)
+        imageIcon.image = UIImage(named: weatherDataModel.weatherIconName)
+        
+    }
     
     
     
@@ -61,11 +117,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         if (loc.horizontalAccuracy > 0){
         
             locationManager.stopUpdatingLocation()
-            let latitude = loc.coordinate.latitude
-            let longitude = loc.coordinate.longitude
+            locationManager.delegate = nil
             
-//            let params : [String : String] = ["lat" : latitude, "long" : longitude, "appid" : APP_ID]
+            let latitude = String(loc.coordinate.latitude)
+            let longitude = String(loc.coordinate.longitude)
+            
+            let params : [String : String] = ["lat" : latitude, "lon" : longitude, "appid" : APP_ID]
             print("location = \(longitude), \(latitude)")
+//            print("location = \(params["long"]), \(params["lat"])")
+            
+            getWeatherData(url: WEATHER_URL, parameters: params)
         }
        
         
@@ -74,7 +135,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
        //Write the didFailWithError Method here
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
-        cityLabel.text = "Error"
+        cityLabel.text = "Error Fetching Location."
         
     }
     
