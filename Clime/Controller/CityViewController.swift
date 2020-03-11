@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol ChangeCityDelegate {
+    
+    func userEnteredNewCity (city : String)
+}
+
 class CityViewController: UIViewController {
+    
+    var delegate : ChangeCityDelegate?
 
     @IBOutlet weak var enterCityField: UITextField!
     
@@ -20,6 +27,12 @@ class CityViewController: UIViewController {
 
 
     @IBAction func getWeatherBtn(_ sender: Any) {
+        
+        let cityName = enterCityField.text!
+        
+        delegate?.userEnteredNewCity(city: cityName)
+        
+        self.dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
